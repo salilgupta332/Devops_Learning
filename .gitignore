@@ -1,0 +1,9 @@
+.terraform/
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+crash.log
+Terraform/terraform-key
+Terraform/terraform-key.pub
