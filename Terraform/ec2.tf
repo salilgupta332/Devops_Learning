@@ -72,4 +72,5 @@ resource "aws_instance" "my-instace" {
       Name = "terraform-instance"
     }
 
+
 }
