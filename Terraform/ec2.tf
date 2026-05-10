@@ -60,17 +60,23 @@ resource "aws_security_group" "my-sg" {
 
 resource "aws_instance" "my-instace" {
 
+#  count = 2 #this will create 2 instances of the same configuration, we can use count to create multiple instances of the same configuration this is call meta-argument in terraform 
+
+for_each = tomap({
+  instance1 ="t2.micro",
+  instance2 ="t2.medium"
+})
     key_name = aws_key_pair.my-key.key_name
     security_groups = [aws_security_group.my-sg.name]
-    instance_type = var.aws_instance_type
+    instance_type =  each.value
     ami = var.ec2_ami
     user_data = file("install_nginx.sh")
     root_block_device {
-      volume_size = var.root_block_volume_size
+      volume_size = var.env == "prod" ? 20 : var.root_default_block_volume_size #here we are using ternary operator to set the volume size based on the environment, if the environment is prod then the volume size will be 20 else it will be the default block volume size which is 15
       volume_type = "gp3"
     }
     tags = {
-      Name = "terraform-instance"
+      Name = each.key
     }
 
 

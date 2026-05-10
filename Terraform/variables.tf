@@ -13,8 +13,15 @@ variable "ec2_ami" {
   
 }
 
-variable "root_block_volume_size" {
+variable "root_default_block_volume_size" {
   description = "The size of the root block volume for the EC2 instance."
   type        = number
   default     = 15
+}
+
+variable "env" {
+    description = "The environment for which the infrastructure is being provisioned."
+    type        = string
+    default     = "dev"
+  
 }
