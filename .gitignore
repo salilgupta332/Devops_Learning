@@ -1,9 +1,14 @@
-.terraform/
+# Terraform local files
 **/.terraform/
 *.tfstate
 *.tfstate.*
 *.tfvars
 *.tfvars.json
+*.tfplan
 crash.log
-Terraform/terraform-key
-Terraform/terraform-key.pub
+.terraform.tfstate.lock.info
+
+# Local SSH keys
+**/terraform-key
+**/terraform-key.pub
+*.pem
